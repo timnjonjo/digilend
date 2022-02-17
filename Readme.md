@@ -54,3 +54,19 @@ Coordinates process to produce a desired effect business rules.
 #### Prerequisites;
 * Docker runtime
 
+### Building & Running the App
+```shell
+git clone https://github.com/timnjonjo/digilend.git
+
+cd digilend
+
+mvn clean package
+
+docker build -t digilend-app .
+
+docker run --rm -it -p 8080:8080 digilend-app 
+
+```
+
+The app will start on port 8080
+
