@@ -48,3 +48,9 @@ Service to score accounts, track leads and determine credit eligibility of indiv
 Coordinates process to produce a desired effect business rules.
 - improve operational efficiency
 - one point of change for any business need
+
+## Setting Up the Project
+
+#### Prerequisites;
+* Docker runtime
+

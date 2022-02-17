@@ -43,6 +43,14 @@ public abstract class Auditable {
 
     private String ipAddress;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getIpAddress() {
         return ipAddress;
     }
