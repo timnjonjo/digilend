@@ -43,6 +43,7 @@ public class DefaultAccountsSetup {
         this.boostrapPermissions();
         this.createDefaultRole();
         this.createDefaultUser();
+        this.createUsersRole();
     }
 
     private void createDefaultUser() {
@@ -61,13 +62,13 @@ public class DefaultAccountsSetup {
     }
 
 
-    // Create Default Role
+    // Create Super Role
     public void createDefaultRole() {
-        String roleName = "admin";
+
         //Get DEFAULT Role
-        Optional<Role> optionalRole = this.roleService.findByName(roleName);
+        Optional<Role> optionalRole = this.roleService.findByName(Constants.ADMIN_ROLE_NAME);
         if (optionalRole.isPresent()) {
-            log.info("Role {} Exists", roleName);
+            log.info("Role {} Exists", Constants.ADMIN_ROLE_NAME);
             log.info("Check missing missions;");
             Role createdRole = optionalRole.get();
             Collection<Permission> rolePermissions = this.permissionService.getPermissionsByRoleId(createdRole.getId());
@@ -79,17 +80,29 @@ public class DefaultAccountsSetup {
                 this.roleService.getRoleRepository().save(createdRole);
             }
 
-            return;
         }
 
         // Get All Permissions;
         List<Permission> permissions = this.permissionService.findAll();
         CreateRoleRequest request = CreateRoleRequest.builder()
-                .name(roleName)
+                .name(Constants.ADMIN_ROLE_NAME)
                 .permissions(permissions)
                 .build();
         this.roleService.createRole(request);
-        log.info("Role{} Created", roleName);
+        log.info("Role{} Created", Constants.ADMIN_ROLE_NAME);
+    }
+
+    public void createUsersRole() {
+        Optional<Role> optionalRole = this.roleService.findByName(Constants.USERS_ROLE_NAME);
+        if (!optionalRole.isPresent()) {
+            return;
+        }
+        CreateRoleRequest request = CreateRoleRequest.builder()
+                .name(Constants.ADMIN_ROLE_NAME)
+                .build();
+        this.roleService.createRole(request);
+        log.info("Role{} Created", Constants.ADMIN_ROLE_NAME);
+
     }
 
     //Bootstrap permissions;

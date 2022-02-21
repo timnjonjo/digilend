@@ -15,4 +15,6 @@ public interface RoleService {
     Optional<Role> findByName(String roleName);
 
     RoleRepository getRoleRepository();
+
+    Optional<Role> getDefaultUsersRole();
 }

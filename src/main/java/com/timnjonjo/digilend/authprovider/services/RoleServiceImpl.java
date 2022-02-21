@@ -1,13 +1,12 @@
 package com.timnjonjo.digilend.authprovider.services;
 
-import com.timnjonjo.digilend.authprovider.persistence.Permission;
 import com.timnjonjo.digilend.authprovider.persistence.Role;
 import com.timnjonjo.digilend.authprovider.persistence.RoleRepository;
+import com.timnjonjo.digilend.orchestator.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -46,6 +45,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public RoleRepository getRoleRepository() {
         return this.roleRepository;
+    }
+
+    @Override
+    public Optional<Role> getDefaultUsersRole() {
+        return this.roleRepository.findByName(Constants.USERS_ROLE_NAME);
     }
 
 
