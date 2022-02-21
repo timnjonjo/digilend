@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout.html}" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="row" layout:fragment="content" >
+
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" th:text="${title}"></h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Amount</th>
+                            <th>Created</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr th:if="${loanapplications!=null && !loanapplications.isEmpty()}" th:each=" item,i : ${loanapplications}">
+                            <td th:text="${item.customerAccount.fullname()}">Jacob</td>
+                            <td th:text="${item.amount}">53275531</td>
+                            <td th:text="${item.status}">12 May 2017</td>
+                            <td><label class="badge badge-danger">Pending</label></td>
+                        </tr>
+                        <tr   th:if="${loanapplications==null || loanapplications.isEmpty()}">
+                            <td> No Loan Applications</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

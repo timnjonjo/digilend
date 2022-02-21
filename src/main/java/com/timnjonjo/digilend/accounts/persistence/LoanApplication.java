@@ -14,9 +14,19 @@ import javax.persistence.Table;
 @Table
 public class LoanApplication  extends Auditable {
     @ManyToOne
+    private CustomerAccount customerAccount;
+    @ManyToOne
     private LoanProduct loanProduct;
     private Double amount;
     private String status;
+
+    public CustomerAccount getCustomerAccount() {
+        return customerAccount;
+    }
+
+    public void setCustomerAccount(CustomerAccount customerAccount) {
+        this.customerAccount = customerAccount;
+    }
 
     public LoanProduct getLoanProduct() {
         return loanProduct;
